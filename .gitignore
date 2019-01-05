@@ -1,8 +1,7 @@
 .vscode/
 data/coco/annotations/*
 data/coco/*.pkl
-
-uploaded_images/*
+images/
 *.h5
 
 # Byte-compiled / optimized / DLL files
