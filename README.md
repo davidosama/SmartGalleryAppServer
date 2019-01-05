@@ -6,11 +6,11 @@
 
 3. Move files 'keras_model.h5' to project folder and 'captions_train2014.json' 'captions_train2014.json' to data/coco/annotations
 
-4. Create virtual enviornment named "venv" or anything else: `virtualenv venv`
+4. Create virtual enviornment named "venv": `virtualenv venv`
 
 5. Activate virtual enviornment
-    for windows: `virtualenv\Scripts\activate.bat`
-    for linux/macOS: `source virtualenv/bin/activate`
+    for windows: `venv\Scripts\activate.bat`
+    for linux/macOS: `source venv/bin/activate`
 
 6. Install project dependencies: `pip install -r requirements.txt`
 
