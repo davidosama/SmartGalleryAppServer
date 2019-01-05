@@ -1,13 +1,15 @@
-# flaskApp
+# Image Captioning Deep Learnin Model Deployed on Flask Server
 
-1- create virtual enviornment named "virtualenv" or anything else: `python venv virtualenv`
+### Setup
 
-2- activate virtual enviornment
+1. Clone repo
 
-for windows: `virtualenv\Scripts\activate.bat`
+2. Create virtual enviornment named "virtualenv" or anything else: `python venv virtualenv`
 
-for linux/macOS: `source virtualenv/bin/activate`
+3. Activate virtual enviornment
+   for windows: `virtualenv\Scripts\activate.bat`
+   for linux/macOS: `source virtualenv/bin/activate`
 
-3- install project dependencies: `pip install -r requirements.txt`
+4. Install project dependencies: `pip install -r requirements.txt`
 
-4- run flask server: `python app.py`
+5. Run flask server: `python app.py`
