@@ -2,6 +2,7 @@
 data/coco/annotations/*
 data/coco/*.pkl
 images/
+uploaded_images/
 *.h5
 
 # Byte-compiled / optimized / DLL files
