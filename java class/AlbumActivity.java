@@ -462,12 +462,13 @@ public class AlbumActivity extends AppCompatActivity {
             HttpURLConnection httpURLConnection = null;
             try {
                 httpURLConnection = (HttpURLConnection) new URL(params[0]).openConnection();
+                httpURLConnection.setRequestProperty("Content-Type","application/json; charset=UTF-8");
                 httpURLConnection.setRequestMethod("POST");
 
                 httpURLConnection.setDoOutput(true);
 
                 DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
-                wr.writeBytes("PostData=" + params[1]);
+                wr.writeBytes(params[1]);
                 wr.flush();
                 wr.close();
 

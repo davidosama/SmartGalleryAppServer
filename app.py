@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from PIL import Image
 import os
 import model
+import base64
 
 app = Flask(__name__)
 
@@ -13,11 +14,21 @@ def home():
 # REST API send image file with tag 'image'
 @app.route("/api", methods=['POST'])
 def index():
-    image = request.files['image']
-    filename = image.filename
-    image.save(os.path.join('uploaded_images', filename))
+    #image = request.files['image']
+    print("PYMINA1")
+    image_string = request.json['image']
+    image = base64.b64decode(image_string)
+    print("Mina", image_string)
+    filename = "img"
+    format_txt = ".jpg"
+    path='uploaded_images/'+filename + format_txt
+    print("path is ",path)
 
-    caption = model.generate_caption(os.path.join('uploaded_images', filename))
+    imgFile = open(path, 'wb')
+    imgFile.write(image)
+    print('done')
+
+    caption = model.generate_caption(os.path.join('uploaded_images', filename+format_txt))
 
     return caption
 
