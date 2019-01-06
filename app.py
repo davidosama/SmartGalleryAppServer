@@ -14,16 +14,11 @@ def home():
 # REST API send image file with tag 'image'
 @app.route("/api", methods=['POST'])
 def index():
-    #image = request.files['image']
-    print("PYMINA1")
     image_string = request.json['image']
     image = base64.b64decode(image_string)
-    print("Mina", image_string)
     filename = "img"
     format_txt = ".jpg"
     path='uploaded_images/'+filename + format_txt
-    print("path is ",path)
-
     imgFile = open(path, 'wb')
     imgFile.write(image)
     print('done')
