@@ -14,6 +14,7 @@ def home():
 # REST API send image file with tag 'image'
 @app.route("/api", methods=['POST'])
 def index():
+    print('new image caption request received')
     image_string = request.json['image']
     image = base64.b64decode(image_string)
     filename = "img"
@@ -21,10 +22,11 @@ def index():
     path='uploaded_images/'+filename + format_txt
     imgFile = open(path, 'wb')
     imgFile.write(image)
-    print('done')
+    print('saving image temporarily is done')
 
     caption = model.generate_caption(os.path.join('uploaded_images', filename+format_txt))
-
+    print('caption: '+caption)
+    
     return caption
 
 @app.route("/test")
