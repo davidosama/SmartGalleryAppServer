@@ -2,7 +2,8 @@
 data/coco/annotations/*
 data/coco/*.pkl
 images/
-uploaded_images/
+uploaded_images/*
+!uploaded_images/.gitkeep
 *.h5
 
 # Byte-compiled / optimized / DLL files
