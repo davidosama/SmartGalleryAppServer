@@ -2,6 +2,7 @@
 data/coco/annotations/*
 data/coco/*.pkl
 images/
+backup/
 uploaded_images/*
 !uploaded_images/.gitkeep
 *.h5
