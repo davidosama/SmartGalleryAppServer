@@ -25,9 +25,16 @@ def index():
     print('saving image temporarily is done')
 
     caption = model.generate_caption(os.path.join('uploaded_images', filename+format_txt))
-    print('caption: '+caption)
+    captionWords = caption.split()
+    finalCaption = []
+    if(captionWords[-1]=="eeee"):
+        for i in range(0,len(captionWords)-1):
+            finalCaption.append(captionWords[i])
+
+    returncap = " ".join(finalCaption)
+    print('caption: '+returncap)
     
-    return caption
+    return returncap
 
 @app.route("/test")
 def test():
