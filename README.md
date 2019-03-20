@@ -1,4 +1,4 @@
-# Image Captioning Deep Learning Model Deployed on Flask Server
+# Image Captioning and Object Detection Deep Learning Models Deployed on Flask Server
 
 ### Setup
 
