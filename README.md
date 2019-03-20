@@ -4,7 +4,9 @@
 
 1. Clone repo
 
-3. Move files 'keras_model.h5' to project folder and 'captions_train2014.json' 'captions_train2014.json' to data/coco/annotations
+2. Move files 'keras_model.h5' to project folder and 'captions_train2014.json' 'captions_train2014.json' to data/coco/annotations
+
+3. Move "yolo.h5" file to data folder
 
 4. Create virtual enviornment named "venv": `virtualenv venv`
 
