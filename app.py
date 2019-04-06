@@ -16,6 +16,7 @@ def home():
 def detection():
     print('new object detection request received')
     image_string = request.json['image']
+    print('decoding image file')
     image = base64.b64decode(image_string)
     filename = "img"
     format_txt = ".jpg"

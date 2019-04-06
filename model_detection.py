@@ -5,6 +5,7 @@ import time
 import cv2
 import numpy as np
 from model.yolo_model import YOLO
+from keras import backend as K
 
 
 def process_image(img):
@@ -106,6 +107,7 @@ def start(path):
     image = cv2.imread(path)
     image, classes = detect_image(image, yolo, all_classes)
     # cv2.imwrite('images/res/' + f, image)
+    K.clear_session()
     str = ""
     if(classes is not None):
         for cl in classes:
