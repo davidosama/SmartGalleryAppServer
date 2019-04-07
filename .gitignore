@@ -224,3 +224,14 @@ ENV/
 
 # mypy
 .mypy_cache/
+data/records_train.pkl
+data/coco/captions_val2014.json
+data/coco/captions_train2014.json
+data/annotations/person_keypoints_val2014.json
+data/annotations/person_keypoints_train2014.json
+data/annotations/instances_val2014.json
+data/annotations/instances_train2014.json
+data/annotations/captions_val2014.json
+data/annotations/captions_train2014.json
+yad2k.py
+yolov3.weights
