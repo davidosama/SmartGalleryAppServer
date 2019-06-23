@@ -26,11 +26,13 @@ def detect_tag_image():
     path='uploaded_images/' + file1
     imgFile = open(path, 'wb')
     imgFile.write(image)
+    imgFile.close()
 
     file2 = "img2.jpg"
     path2='uploaded_images/' + file2
     imgFile = open(path2, 'wb')
     imgFile.write(image)
+    imgFile.close()
 
     print('saving image on the server is done')
 
