@@ -27,10 +27,10 @@ def ProcessTags(tags):
             lastLetter = key[-1:]
             last2Letters = key[-2:]
             if(lastLetter == "s" or lastLetter == "x" or lastLetter == "z" or last2Letters == "sh" or last2Letters == "ch"):
-                finalTag += str(value)+" "+key+"es "
+                finalTag += str(value)+" "+key+"es, "
             else:
-                finalTag += str(value)+" "+key+"s "
+                finalTag += str(value)+" "+key+"s, "
         else:
-            finalTag += key+" "
+            finalTag += key+", "
 
     return finalTag
