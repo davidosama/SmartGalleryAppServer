@@ -1,6 +1,9 @@
 
 
 def ProcessCaption(caption):
+    if(caption is None or caption == ""):
+        return "nocaption"
+
     captionWords = caption.split()
     finalCaption = []
     if(captionWords[-1]=="eeee"):
@@ -10,7 +13,11 @@ def ProcessCaption(caption):
     returncap = " ".join(finalCaption)
     return returncap
 
+
 def ProcessTags(tags):
+    if(tags is None or tags == ""):
+        return "notags"
+
     tagsArray = tags.split()
     tagsDict = {i:tagsArray.count(i) for i in tagsArray}
     finalTag = ""
