@@ -15,13 +15,13 @@ def home():
 
 
 # REST API send image file with key 'image' and returns BOTH caption and tags
-@app.route("/api/image/", methods=['POST'])
+@app.route("/api/image", methods=['POST'])
 def detect_tag_image():
     print('new tag & caption request received')
     image_string = request.json['image']
     print('decoding image file')
     image = base64.b64decode(image_string)
-    
+
     file1 = "img.jpg"
     path='uploaded_images/' + file1
     imgFile = open(path, 'wb')
