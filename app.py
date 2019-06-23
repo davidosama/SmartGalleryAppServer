@@ -21,25 +21,32 @@ def detect_tag_image():
     image_string = request.json['image']
     print('decoding image file')
     image = base64.b64decode(image_string)
-    filename = "img"
-    format_txt = ".jpg"
-    path='uploaded_images/'+filename + format_txt
+    
+    file1 = "img.jpg"
+    path='uploaded_images/' + file1
     imgFile = open(path, 'wb')
     imgFile.write(image)
+
+    file2 = "img2.jpg"
+    path2='uploaded_images/' + file2
+    imgFile = open(path2, 'wb')
+    imgFile.write(image)
+
     print('saving image on the server is done')
 
     # get the tags
-    objects = model_detection.start(os.path.join('uploaded_images', filename+format_txt))
+    objects = model_detection.start(os.path.join('uploaded_images', file1))
     objects = process_models_output.ProcessTags(objects)
     print('objects: '+objects)
 
     # get the caption
-    caption = model_caption.generate_caption(os.path.join('uploaded_images', filename+format_txt))
+    caption = model_caption.generate_caption(os.path.join('uploaded_images', file2))
     caption = process_models_output.ProcessCaption(caption)
     print('caption: '+caption)
 
     # delete the image file
-    os.remove('uploaded_images/'+filename+format_txt)
+    os.remove(path)
+    os.remove(path2)
 
     data = {
         'caption': caption,
