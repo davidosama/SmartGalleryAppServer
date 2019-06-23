@@ -31,6 +31,6 @@ def ProcessTags(tags):
             else:
                 finalTag += str(value)+" "+key+"s "
         else:
-            finalTag += key
+            finalTag += key+" "
 
     return finalTag
