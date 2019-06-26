@@ -5,6 +5,7 @@ import model_caption
 import model_detection
 import base64
 import process_models_output
+import uuid
 
 app = Flask(__name__)
 
@@ -22,13 +23,13 @@ def detect_tag_image():
     print('decoding image file')
     image = base64.b64decode(image_string)
 
-    file1 = "img.jpg"
+    file1 = str(uuid.uuid4())+".jpg"
     path='uploaded_images/' + file1
     imgFile = open(path, 'wb')
     imgFile.write(image)
     imgFile.close()
 
-    file2 = "img2.jpg"
+    file2 = str(uuid.uuid4())+".jpg"
     path2='uploaded_images/' + file2
     imgFile = open(path2, 'wb')
     imgFile.write(image)
@@ -37,12 +38,18 @@ def detect_tag_image():
     print('saving image on the server is done')
 
     # get the tags
-    objects = model_detection.start(os.path.join('uploaded_images', file1))
+    try:
+        objects = model_detection.start(os.path.join('uploaded_images', file1))
+    except:
+        objects = 'notags'
     objects = process_models_output.ProcessTags(objects)
     print('objects: '+objects)
 
     # get the caption
-    caption = model_caption.generate_caption(os.path.join('uploaded_images', file2))
+    try:
+        caption = model_caption.generate_caption(os.path.join('uploaded_images', file2))
+    except:
+        caption = 'nocaption'
     caption = process_models_output.ProcessCaption(caption)
     print('caption: '+caption)
 
@@ -65,16 +72,22 @@ def detection():
     image_string = request.json['image']
     print('decoding image file')
     image = base64.b64decode(image_string)
-    filename = "img"
+    filename = str(uuid.uuid4())
     format_txt = ".jpg"
     path='uploaded_images/'+filename + format_txt
     imgFile = open(path, 'wb')
     imgFile.write(image)
     print('saving image temporarily is done')
 
-    objects = model_detection.start(os.path.join('uploaded_images', filename+format_txt))
-    returnobjects = process_models_output.ProcessTags(objects)
-    print('objects: '+returnobjects)
+    try:
+        objects = model_detection.start(os.path.join('uploaded_images', filename+format_txt))
+    except:
+        objects = 'notags'
+    objects = process_models_output.ProcessTags(objects)
+    print('objects: '+objects)
+
+    # delete the image file
+    os.remove(path)
 
     data = {
         'tags': objects
@@ -89,17 +102,23 @@ def caption():
     print('new image caption request received')
     image_string = request.json['image']
     image = base64.b64decode(image_string)
-    filename = "img"
+    filename = str(uuid.uuid4())
     format_txt = ".jpg"
     path='uploaded_images/'+filename + format_txt
     imgFile = open(path, 'wb')
     imgFile.write(image)
     print('saving image temporarily is done')
 
-    caption = model_caption.generate_caption(os.path.join('uploaded_images', filename+format_txt))
+    try:
+        caption = model_caption.generate_caption(os.path.join('uploaded_images', filename+format_txt))
+    except:
+        caption = 'nocaption'
     returncap = process_models_output.ProcessCaption(caption)
     print('caption: '+returncap)
     
+    # delete the image file
+    os.remove(path)
+
     data = {
         'caption':returncap
     }
@@ -109,16 +128,16 @@ def caption():
 
 @app.route("/testdetection")
 def testdetection():
-    objects = model_detection.start("images/img.jpg")
+    objects = model_detection.start("images/testimg.jpg")
     objects = process_models_output.ProcessTags(objects)
-    return render_template('result.html', caption=objects, image="img.jpg")
+    return render_template('result.html', caption=objects, image="testimg.jpg")
 
 
 @app.route("/testcaption")
 def testcaption():
-    caption = model_caption.generate_caption("images/img.jpg")
+    caption = model_caption.generate_caption("images/testimg.jpg")
     caption = process_models_output.ProcessCaption(caption)
-    return render_template('result.html', caption=caption, image="img.jpg")
+    return render_template('result.html', caption=caption, image="testimg.jpg")
 
 
 if __name__ == '__main__':

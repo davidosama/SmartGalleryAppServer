@@ -1,7 +1,7 @@
 
 
 def ProcessCaption(caption):
-    if(caption is None or caption == ""):
+    if(caption is None or caption == "" or caption == "nocaption"):
         return "nocaption"
 
     captionWords = caption.split()
@@ -15,7 +15,7 @@ def ProcessCaption(caption):
 
 
 def ProcessTags(tags):
-    if(tags is None or tags == ""):
+    if(tags is None or tags == "" or tags == 'notags'):
         return "notags"
 
     tagsArray = tags.split()
