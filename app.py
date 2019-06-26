@@ -76,7 +76,11 @@ def detection():
     returnobjects = process_models_output.ProcessTags(objects)
     print('objects: '+returnobjects)
 
-    return objects
+    data = {
+        'tags': objects
+    }
+
+    return jsonify(data)
 
 
 # REST API send image file with key 'image' and returns the caption
@@ -96,7 +100,11 @@ def caption():
     returncap = process_models_output.ProcessCaption(caption)
     print('caption: '+returncap)
     
-    return returncap
+    data = {
+        'caption':returncap
+    }
+
+    return jsonify(data)
 
 
 @app.route("/testdetection")
