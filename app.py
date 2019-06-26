@@ -72,15 +72,14 @@ def detection():
     image_string = request.json['image']
     print('decoding image file')
     image = base64.b64decode(image_string)
-    filename = str(uuid.uuid4())
-    format_txt = ".jpg"
-    path='uploaded_images/'+filename + format_txt
+    file1 = str(uuid.uuid4())+".jpg"
+    path='uploaded_images/'+file1
     imgFile = open(path, 'wb')
     imgFile.write(image)
     print('saving image temporarily is done')
 
     try:
-        objects = model_detection.start(os.path.join('uploaded_images', filename+format_txt))
+        objects = model_detection.start(os.path.join('uploaded_images', file1))
     except:
         objects = 'notags'
     objects = process_models_output.ProcessTags(objects)
@@ -102,15 +101,14 @@ def caption():
     print('new image caption request received')
     image_string = request.json['image']
     image = base64.b64decode(image_string)
-    filename = str(uuid.uuid4())
-    format_txt = ".jpg"
-    path='uploaded_images/'+filename + format_txt
+    file1 = str(uuid.uuid4())+".jpg"
+    path='uploaded_images/'+file1
     imgFile = open(path, 'wb')
     imgFile.write(image)
     print('saving image temporarily is done')
 
     try:
-        caption = model_caption.generate_caption(os.path.join('uploaded_images', filename+format_txt))
+        caption = model_caption.generate_caption(os.path.join('uploaded_images', file1))
     except:
         caption = 'nocaption'
     returncap = process_models_output.ProcessCaption(caption)
